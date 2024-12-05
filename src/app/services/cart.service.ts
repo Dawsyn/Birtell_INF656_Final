@@ -6,20 +6,23 @@ import { BehaviorSubject,Observable } from 'rxjs';
 })
 export class CartService {
 
-  private cart = new BehaviorSubject<Product[]>([]);
-  cart$ = this.cart.asObservable(); 
+  public cart$ = new BehaviorSubject<Product[]>([]);
+  // cart$ = this.cart.asObservable(); 
 
   constructor() { } 
   
   addToCart(product: Product): void {
-    console.log("Product added to cart:", product);
-    const currentCart = this.cart.getValue();
-    currentCart.push(product); 
-    this.cart.next(currentCart); 
+    const cartJson = localStorage.getItem('cart');
+    const cart = cartJson ? JSON.parse(cartJson) as Product[] : [];
+
+    localStorage.setItem('cart', JSON.stringify([...cart, product]));
   } 
       
-  getCartItems(): Product[] { 
-    return this.cart.getValue();
+  getCartItems(): Product[] {
+    const cartJson = localStorage.getItem('cart');
+    const cart = cartJson ? JSON.parse(cartJson) as Product[] : [];
+
+    return cart;
   } 
 }
 
