@@ -14,6 +14,7 @@
 .btn{
 color:#F7F7FF;
 background-color: #fe5f55;
+
 }
 
 .btn:hover {
@@ -58,6 +59,7 @@ margin-top: 10%;
     flex-direction: column;
     flex: auto;
     padding-right: 5%;
+    padding-left: 5%;
     justify-content: flex-start;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -72,11 +74,12 @@ margin-top: 10%;
 }
 
 .card img {
-    width: 200px;           
-    height: auto;          
+    width: auto;           
+    height: 320px;          
     object-fit: cover;      
     justify-content: center;
-    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card-price {
