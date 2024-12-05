@@ -35,4 +35,14 @@ nav{
     background-color: #495867;
 }
 
-
+.cart-icon .badge {
+    position: absolute;
+    top: -10px; /* Position badge above the icon */
+    right: -10px; /* Position badge to the right of the icon */
+    background-color: #F7F7FF; /* Badge background color */
+    color: #fe5f55; /* Badge text color */
+    border-radius: 50%; /* Make badge circular */
+    padding: 5px 8px; /* Adjust badge size */
+    font-size: 12px; /* Badge text size */
+    font-weight: bold;
+}

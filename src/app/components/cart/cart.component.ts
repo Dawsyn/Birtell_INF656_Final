@@ -16,20 +16,16 @@ export class CartComponent implements OnInit {
   
   constructor(private cartService: CartService) {}
   
+
+  //Clears cart visually
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
-
-    console.log(this.cartItems);
-
-    // this.cartService.cart$.subscribe((items) => {
-    //   this.cartItems = items;
-    //   console.log('Cart items in CartComponent:', this.cartItems); // Check cart contents
-    // });
+    this.cartService.cart$.subscribe(items => {
+      this.cartItems = items;
+    });
   }
 
   // Clear the cart
-  clearCart(): void {
-    // this.cartService.clearCart();
-    this.cartItems = [];
+  clearCart(): void{
+    this.cartService.clearCart();
   }
 }

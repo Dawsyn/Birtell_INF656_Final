@@ -5,25 +5,34 @@ import { BehaviorSubject,Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-
-  public cart$ = new BehaviorSubject<Product[]>([]);
-  // cart$ = this.cart.asObservable(); 
-
-  constructor() { } 
+    private cartSubject = new BehaviorSubject<Product[]>(this.getCartItems());
+    public cart$ = this.cartSubject.asObservable();
   
-  addToCart(product: Product): void {
-    const cartJson = localStorage.getItem('cart');
-    const cart = cartJson ? JSON.parse(cartJson) as Product[] : [];
+    constructor() {}
+  
+    addToCart(product: Product): void {
+      const currentCart = this.cartSubject.value; // Get the current cart value
+      const updatedCart = [...currentCart, product];
+  
+      // Update localStorage
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+  
+      // Emit the updated cart
+      this.cartSubject.next(updatedCart);
+    }
+  
+    getCartItems(): Product[] {
+      const cartJson = localStorage.getItem('cart');
+      return cartJson ? JSON.parse(cartJson) as Product[] : [];
+    }
+  
+    clearCart(): void {
+      localStorage.removeItem('cart');
+  
+      // Emit an empty array
+      this.cartSubject.next([]);
+    }
 
-    localStorage.setItem('cart', JSON.stringify([...cart, product]));
-  } 
-      
-  getCartItems(): Product[] {
-    const cartJson = localStorage.getItem('cart');
-    const cart = cartJson ? JSON.parse(cartJson) as Product[] : [];
-
-    return cart;
-  } 
 }
 
   export interface Product {

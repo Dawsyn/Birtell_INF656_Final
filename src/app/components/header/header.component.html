@@ -50,7 +50,8 @@
     </div>
     <h2 class="cart">
         <a href="/cart" class="text-color">
-            <i class="bi bi-cart">Cart</i>
+            <i class="bi bi-cart bi-badge">Cart</i>
+            <span class="badge" *ngIf="cartItems > 0">{{ cartItems}}</span>
         </a>
     </h2>
     </div>

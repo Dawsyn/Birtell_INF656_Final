@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SportFilterService } from '../../services/sport-filter.service';
+import { CartService } from '../../services/cart.service';
 
 
 @Component({
@@ -11,9 +12,21 @@ import { SportFilterService } from '../../services/sport-filter.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  constructor(private sportFilterService: SportFilterService, private router: Router) {}
+  constructor(
+    private sportFilterService: SportFilterService,
+    private router: Router,
+    private cartService: CartService
+  ) {}
+
+cartItems = 0;
+
+  ngOnInit(): void {
+    this.cartService.cart$.subscribe(items => {
+      this.cartItems = items.length;
+    });
+  }
 
   navMenu = [
     { name: 'Home', url: '/', sub: [] },
