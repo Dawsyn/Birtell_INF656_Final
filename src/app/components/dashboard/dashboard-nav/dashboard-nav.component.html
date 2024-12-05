@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="d-flex">
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="list-group list-flush-group">
+            <a href="/dashboard" class="list-group-item list-group-item-action bg-light">
+                Dashboard Home</a>
+
+            <a href="/dashboard/employee" class="list-group-item list-group-item-action bg-light">
+                Employees</a>
+
+            <a href="#" class="list-group-item list-group-item-action bg-light">
+                Singles</a>
+
+            <a href="#" class="list-group-item list-group-item-action bg-light">
+                Boxes</a>
+
+            <a href="#" class="list-group-item list-group-item-action bg-light">
+                Breaks</a>
+            
+        </div>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

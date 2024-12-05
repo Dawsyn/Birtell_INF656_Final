@@ -6,6 +6,12 @@ import { SinglesComponent } from './components/singles/singles.component';
 import { AboutComponent } from './components/about/about.component';
 import { CartComponent } from './components/cart/cart.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { Component } from '@angular/core';
+import { EmployeeComponent } from './components/dashboard/employee/employee.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent},
@@ -16,4 +22,10 @@ export const routes: Routes = [
     { path: 'about', component: AboutComponent},
     { path: 'cart', component: CartComponent},
     { path: 'admin', component: AdminComponent},
+    { path: 'register', component: RegisterComponent},
+    { path: 'login', component: LoginComponent},
+    { path: 'dashboard', component: DashboardComponent,
+        children: [{ path: 'employee', component: EmployeeComponent }]
+    },
+    { path: '**', component: PagenotfoundComponent},
 ];

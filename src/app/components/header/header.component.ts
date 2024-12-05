@@ -42,6 +42,7 @@ export class HeaderComponent {
       ]
     },
     { name: 'About', url: '/about', sub: [] },
+    {name: 'Login', url: '/login', sub: []},
   ];
 
   // Filters content based on the selected sport
