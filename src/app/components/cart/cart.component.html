@@ -9,10 +9,12 @@
     <div *ngIf="cartItems.length > 0">
       <ul>
         <li *ngFor="let item of cartItems">
-          <p><strong>{{ item.player }} | {{ item.description }}</strong> - {{ item.price }}</p>
+          <p><strong>{{ item.player || item.brand }} | {{ item.description }}</strong> - ${{ item.price }}</p>
         </li>
       </ul>
+      <p><strong>Total: </strong>${{ getTotalPrice() }}</p>
     <button class="btn btn-danger" (click)="clearCart()">Clear Cart</button>
+    <button class="btn btn-danger">Check Out</button>
     </div>
   </div>
   

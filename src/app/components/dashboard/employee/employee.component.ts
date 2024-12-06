@@ -3,22 +3,24 @@ import { Employee } from '../../../models/employee/employee.module';
 import { EmployeeService } from '../../../services/employee.service';
 import { CommonModule } from '@angular/common';
 import { DashboardNavComponent } from "../dashboard-nav/dashboard-nav.component";
-import { provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [CommonModule, DashboardNavComponent],
+  imports: [CommonModule, DashboardNavComponent, FormsModule],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
 
 export class EmployeeComponent {
   employees: Employee[] = [];
+
   employee: any = {
     _id: '',
     firstname: '',
-    lastname: ''
+    lastname: '',
+    role: ''
   }
 
   constructor(private employeeService: EmployeeService) {}
@@ -37,16 +39,23 @@ loadEmployees(){
 }
 
 // Get Employee
-getEmployee(id: string){
-  if(id){
-    this.employeeService.getEmployee(id).subscribe((employeeData) => {
-      this.employee = employeeData;
-    });
+  getEmployee(id: string) {
+    if (id) {
+      this.employeeService.getEmployee(id).subscribe({
+        next: (employeeData) => {
+          this.employee = employeeData; // Assign the fetched data
+          console.log('Fetched employee data:', this.employee); // Log the data
+        },
+        error: (error) => {
+          console.error('Error fetching employee:', error);
+        }
+      });
+    } else {
+      console.log('Employee ID is not defined.');
+    }
   }
-  else {
-    console.log("Employee id is not defined.")
-  }
-}
+  
+
 
    //update employees
   updateEmployee() {
@@ -72,4 +81,36 @@ getEmployee(id: string){
       this.loadEmployees();
     })
   }
+
+  //Adds a new employee
+  addEmployee() {
+      // Validate the form fields
+      if (!this.employee.firstname || !this.employee.lastname || !this.employee.role) {
+        alert('All fields are required to add an employee.');
+        return;
+      }
+    
+      // Call the service to add the employee
+      this.employeeService.addEmployee(this.employee).subscribe({
+        next: (newEmployee) => {
+          console.log('Employee added successfully:', newEmployee);
+          this.loadEmployees(); // Refresh the employee list
+          this.resetEmployeeForm(); // Clear the form after adding
+        },
+        error: (error) => {
+          console.error('Error adding employee:', error);
+          alert('Failed to add employee. Please try again.');
+        }
+      });
+    }  
+  
+  // Reset form fields after adding an employee
+  resetEmployeeForm() {
+    this.employee = {
+      firstname: '',
+      lastname: '',
+      role: '',
+    };
+  }
+
 }

@@ -26,21 +26,31 @@ export class EmployeeService {
 
   //Update employee
   updateEmployee(employee: Employee): Observable<Employee>{
-    console.log('sending uodate request for employee.', employee);
     return this.http.put<Employee>(`${this.apiUrl}`, {
-      body: {
-        id: employee._id,
+        _id: employee._id,
         firstName: employee.firstname,
-        lastName: employee.lastname}
+        lastName: employee.lastname,
+        role: employee.role,
     });
+  }
+
+  //Add Employee
+  addEmployee(employee: Employee): Observable<Employee> {
+    const payload = {
+      firstname: employee.firstname,
+      lastname: employee.lastname,
+      role: employee.role,
+    };
+  
+    console.log('Sending add request for employee:', payload); // Debugging log
+    return this.http.post<Employee>(`${this.apiUrl}`, payload);
   }
 
   //Delete Employee
   deleteEmployee(id: string): Observable<any>{
-    return this.http.request<Employee>('delete',`${this.apiUrl}/${id}`,{
-      body: {
-        id: id
-      }
-    });
+    const url = `${this.apiUrl}/${id}`;
+  console.log('Deleting employee with URL:', url); // Log the URL
+  return this.http.delete<any>(url);
   }
+    
 }

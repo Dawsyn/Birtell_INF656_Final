@@ -10,7 +10,6 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { Component } from '@angular/core';
 import { EmployeeComponent } from './components/dashboard/employee/employee.component';
 
 export const routes: Routes = [

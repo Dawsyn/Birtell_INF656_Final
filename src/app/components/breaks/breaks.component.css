@@ -1,3 +1,4 @@
+
 .col-sm-4{
     margin-left: auto;
     margin-right: auto;
@@ -7,13 +8,14 @@
 }
 
 .wrapper{
-    margin-right: 10%;
-    margin-left: 10%;
+    margin-right: 33%;
+    margin-left: 33%;
 }
 
 .btn{
 color:#F7F7FF;
 background-color: #fe5f55;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
@@ -31,10 +33,14 @@ background-color: #fe5f55;
 
 .card{
     border: 1px solid #e0e0e0; 
-    border-radius: 8px; 
+    border-radius: 2%; 
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #fff; 
+    max-width: 500px;
+    min-width: 277px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card-text{
@@ -49,6 +55,7 @@ flex: 1;
 text-align: left;
 word-wrap: break-word;
 height: auto;
+min-width: 320px;
 border: 2px solid #495867;
 margin-top: 10%;
 }
@@ -58,6 +65,7 @@ margin-top: 10%;
     flex-direction: column;
     flex: auto;
     padding-right: 5%;
+    padding-left: 5%;
     justify-content: flex-start;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -72,11 +80,14 @@ margin-top: 10%;
 }
 
 .card img {
-    width: 200px;           
-    height: auto;          
+    width: auto; 
+    max-width: 350px;       
+    height: 320px;          
     object-fit: cover;      
     justify-content: center;
-    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2%;
 }
 
 .card-price {
@@ -107,6 +118,8 @@ margin-top: 10%;
     box-sizing: border-box; 
     font-size: 16px;
     text-align: center;
+    min-width: 123px;
+    max-height: 45px;
 }
 
 .filter-btn{
@@ -117,7 +130,8 @@ margin-top: 10%;
     margin: 3px;
     justify-content: center;
     align-items: center;
-    
+    min-width: 123px;
+    max-height: 45px;
     }
 
     .filter-btn:hover {
@@ -126,6 +140,7 @@ margin-top: 10%;
         border-color: #f7f7ff;
         transform: scale(1.05);
         transition: color 0.5s ease;
+        
     }
 
     p, .filter-btn {

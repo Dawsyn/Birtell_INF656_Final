@@ -6,7 +6,6 @@ import { SportFilterService } from '../../services/sport-filter.service';
 import { CartService } from '../../services/cart.service';
 import { OnInit } from '@angular/core';
 import { Product } from '../../services/cart.service';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-singles',
@@ -18,12 +17,11 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class SinglesComponent implements OnInit {
   selectedSport: string = 'All'; // Default to 'All'
-  product = { id: 1, name: 'Card 1', player: 'Christian Braun', sport: 'Basketball', description: 'SGC 10 Select Orange /65', price:'$40', img: 'IMG_0327.jpg' }
+  //product = { id: 1, name: 'Card 1', player: 'Christian Braun', sport: 'Basketball', description: 'SGC 10 Select Orange /65', price:'$40', img: 'IMG_0327.jpg' }
 
   constructor(
     private sportFilterService: SportFilterService,
-    private cartService: CartService,
-    private cdr: ChangeDetectorRef
+    private cartService: CartService
   ) {}
   
   ngOnInit(): void {
@@ -46,18 +44,18 @@ export class SinglesComponent implements OnInit {
 
   /* selectedSport: string = ''; // Stores the selected sport */
   cards = [
-    { id: 1, name: "Card 1", player: "Christian Braun", sport: "Basketball", description: "SGC 10 Select Orange /65", price:"$40", img: "IMG_0327.jpg" },
-    { id: 2, name: "Card 2", player: "Jerry Jeudy", sport: "Football", description: "PSA 10 Mosaic Purple No Huddle Purple /50", price:"$40", img: "IMG_0325.jpg" },
-    { id: 3, name: "Card 3", player: "Erling Haaland", sport: "Soccer", description: "PSA 10 Topps Chrome Silver Mini Diamonds /199", price:"$60", img: "IMG_0092.jpg" },
-    { id: 4, name: "Card 4", player: "Erling Haaland", sport: "Soccer", description: "PSA 10 Topps Finest Purple /299", price:"$50", img: "IMG_0093.jpg" },
-    { id: 5, name: "Card 5", player: "Ja Morant", sport: "Basketball", description: "Prizm Pink Cracked Ice", price:"$80", img: "IMG_3753.jpg" },
-    { id: 6, name: "Card 6", player: "Lamar Jackson", sport: "Football", description: "Prestige Heroes Red /299", price:"$25", img: "IMG_0321.jpg" },
-    { id: 7, name: "Card 7", player: "Brandon Miller", sport: "Basketball", description: "PSA 8 Select Premier Level Blue", price:"$5", img: "IMG_0323.jpg" },
-    { id: 8, name: "Card 8", player: "Jamie Jaquez", sport: "Basketball", description: "PSA 10 Obsidian Electric Etch Orange Flood /99", price:"$50", img: "IMG_0329.jpg" },
-    { id: 9, name: "Card 9", player: "Luka Doncic", sport: "Basketball", description: "SGC 10 NBA Hoops Presentations", price:"$100", img: "IMG_3669.PNG" },
-    { id: 10, name: "Card 10", player: "Steph Curry", sport: "Basketball", description: "SGC 9.5 Optic Holo Lights Out", price:"$20", img: "IMG_3670.PNG" },
-    { id: 11, name: "Card 11", player: "LeBron James", sport: "Basketball", description: "SGC 9 Optic Holo Lights Out", price:"$10", img: "IMG_3671.PNG" },
-    { id: 12, name: "Card 12", player: "Charles Barkley", sport: "Basketball", description: "SGC 10 | Auto 10 Mosaic Scripts Charles Barkley", price:"$150", img: "IMG_3673.PNG" },
+    { id: 1, name: "Card 1", player: "Christian Braun", sport: "Basketball", description: "SGC 10 Select Orange /65", price:40, img: "IMG_0327.jpg" },
+    { id: 2, name: "Card 2", player: "Jerry Jeudy", sport: "Football", description: "PSA 10 Mosaic Purple No Huddle Purple /50", price:40, img: "IMG_0325.jpg" },
+    { id: 3, name: "Card 3", player: "Erling Haaland", sport: "Soccer", description: "PSA 10 Topps Chrome Silver Mini Diamonds /199", price:60, img: "IMG_0092.jpg" },
+    { id: 4, name: "Card 4", player: "Erling Haaland", sport: "Soccer", description: "PSA 10 Topps Finest Purple /299", price:50, img: "IMG_0093.jpg" },
+    { id: 5, name: "Card 5", player: "Ja Morant", sport: "Basketball", description: "Prizm Pink Cracked Ice", price:80, img: "IMG_3753.jpg" },
+    { id: 6, name: "Card 6", player: "Lamar Jackson", sport: "Football", description: "Prestige Heroes Red /299", price:25, img: "IMG_0321.jpg" },
+    { id: 7, name: "Card 7", player: "Brandon Miller", sport: "Basketball", description: "PSA 8 Select Premier Level Blue", price:5, img: "IMG_0323.jpg" },
+    { id: 8, name: "Card 8", player: "Jamie Jaquez", sport: "Basketball", description: "PSA 10 Obsidian Electric Etch Orange Flood /99", price:50, img: "IMG_0329.jpg" },
+    { id: 9, name: "Card 9", player: "Luka Doncic", sport: "Basketball", description: "SGC 10 NBA Hoops Presentations", price:100, img: "IMG_3669.PNG" },
+    { id: 10, name: "Card 10", player: "Steph Curry", sport: "Basketball", description: "SGC 9.5 Optic Holo Lights Out", price:20, img: "IMG_3670.PNG" },
+    { id: 11, name: "Card 11", player: "LeBron James", sport: "Basketball", description: "SGC 9 Optic Holo Lights Out", price:10, img: "IMG_3671.PNG" },
+    { id: 12, name: "Card 12", player: "Charles Barkley", sport: "Basketball", description: "SGC 10 | Auto 10 Mosaic Scripts Charles Barkley", price:150, img: "IMG_3673.PNG" },
   ];
 
   get filteredCards() {
@@ -78,27 +76,5 @@ export class SinglesComponent implements OnInit {
   addToCart(product: Product): void {
     console.log("Added to cart");
     this.cartService.addToCart(product);
-    this.cdr.detectChanges
   }
-
-/*   addToCart(items: {}): void {
-    console.log(`Clicked Add to Cart for: ${this.cards}`); // Check button trigger
-    this.cartService.addToCart(items); // Add the card to the cart
-    // window.alert('Your product has been added to the cart!');
-    //console.log(`Added to cart (from SinglesComponent):`, this.cartService.getCartItems()); // Check cart contents
-  } */
-
-
-/*   ngOnInit(): void {
-    this.cartService.getCartItems().subscribe((items) => {
-      this.cartItems = items;
-      console.log('Cart items in CartComponent:', this.cartItems); // Check cart contents
-    });
-  } */
-
-/*     addToCart(item: any) {
-      console.log('Add item');
-      this.cartService.addToCart(item);
-      //window.alert('Your product has been added to the cart!');
-    } */
 }

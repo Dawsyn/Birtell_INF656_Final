@@ -23,6 +23,11 @@ export class CartComponent implements OnInit {
       this.cartItems = items;
     });
   }
+    
+  getTotalPrice(): number {
+      return this.cartItems.reduce((total, item) => total + item.price, 0);
+    }
+  
 
   // Clear the cart
   clearCart(): void{

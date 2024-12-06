@@ -28,3 +28,7 @@
     width: 100%; /* Ensure the cart container spans the desired width */
     max-width: 800px; /* Optional: Limit the cart's width */
 }
+
+.btn{
+    margin: 2%;
+}
