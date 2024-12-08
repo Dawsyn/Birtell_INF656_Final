@@ -1,7 +1,6 @@
 <app-header></app-header>
-<!-- <div class="wrapper">
 
-
+<div class="wrapper">
     
     <nav class="filterby">
         <p>Filter by Sport: </p>
@@ -10,61 +9,26 @@
         <button (click)="filterBySport('Football')" class="filter-btn">Football</button>
         <button (click)="filterBySport('Baseball')" class="filter-btn">Baseball</button>
         <button (click)="filterBySport('Soccer')" class="filter-btn">Soccer</button>
-    </nav> -->
+    </nav>
     
     <!-- Card List -->
     
-<!--     </div>
+    </div>
 
 <div class="row">
-    <div class="col-sm-4">
-            <div class="card">
-                <div class="card-img" *ngFor="let card of filteredCards">
-                <img src="../../../assets/images/boxes/{{ card.img }}">
-                <div class="card-desc">
-                    <p class="card-text">{{ card.description }}</p>
-                    <small class="card-text">Sport: {{ card.sport }}</small>
-                    <small class="card-text">Brand: {{ card.brand }}</small>
-                    <p class="card-price">Price: {{card.price}}</p>
-                    <button class="btn" (click)="addToCart(card)">Add to cart</button>
-                </div>
-                </div>
-            </div>
-    </div> -->
-
-
-    <div class="wrapper">
-
-
-    
-        <nav class="filterby">
-            <p>Filter by Sport: </p>
-            <button (click)="filterBySport('')" class="filter-btn">All</button>
-            <button (click)="filterBySport('Basketball')" class="filter-btn">Basketball</button>
-            <button (click)="filterBySport('Football')" class="filter-btn">Football</button>
-            <button (click)="filterBySport('Baseball')" class="filter-btn">Baseball</button>
-            <button (click)="filterBySport('Soccer')" class="filter-btn">Soccer</button>
-        </nav>
-        
-        <!-- Card List -->
-        
+    <div class="col-sm-4" *ngFor="let box of filteredBoxesWithImages">
+    <div class="card">
+        <div class="card-img">
+        <img src="../../../assets/images/boxes/{{ box.img }}" alt="{{ box.brand }}">
         </div>
-    
-    <div class="row">
-        <div class="col-sm-4" *ngFor="let card of filteredCards">
-          <div class="card">
-            <div class="card-img">
-              <img src="../../../assets/images/boxes/{{ card.img }}" alt="{{ card.name }}">
-            </div>
-            <div class="card-desc">
-              <p><strong>Brand:</strong> {{ card.brand }}</p>
-              <p> {{ card.description }}</p>
-              <p><strong>Price:</strong> {{ card.price }}</p>
-              <button class="btn btn-primary" (click)="addToCart(card)">Add to cart</button>
-            </div>
-          </div>
+        <div class="card-desc">
+        <p><strong>Brand:</strong> {{ box.brand }}</p>
+        <p> {{ box.description }}</p>
+        <p><strong>Price:</strong> ${{ box.price }}</p>
+        <button class="btn btn-primary" (click)="addToCart(box)">Add to cart</button>
         </div>
-      </div>
-    
+    </div>
+    </div>
+</div>
 
 <app-footer></app-footer>

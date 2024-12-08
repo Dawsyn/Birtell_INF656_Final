@@ -28,8 +28,8 @@ export class EmployeeService {
   updateEmployee(employee: Employee): Observable<Employee>{
     return this.http.put<Employee>(`${this.apiUrl}`, {
         _id: employee._id,
-        firstName: employee.firstname,
-        lastName: employee.lastname,
+        firstname: employee.firstname,
+        lastname: employee.lastname,
         role: employee.role,
     });
   }

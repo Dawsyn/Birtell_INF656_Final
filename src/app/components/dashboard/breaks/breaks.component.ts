@@ -1,112 +1,110 @@
 import { Component } from '@angular/core';
-import { Card } from '../../../models/singles/singles.module';
 import { CommonModule } from '@angular/common';
 import { DashboardNavComponent } from "../dashboard-nav/dashboard-nav.component";
 import { FormsModule } from '@angular/forms';
-import { SinglesService } from '../../../services/singles.service';
 import { HttpClient } from '@angular/common/http';
 import { ImageUploadComponent } from '../../image-upload/image-upload.component';
-
+import { BreaksService } from '../../../services/breaks.service';
+import { Break } from '../../../models/breaks/breaks.module';
 
 @Component({
-  selector: 'app-singles',
+  selector: 'app-breaks',
   standalone: true,
   imports: [CommonModule, DashboardNavComponent, FormsModule, ImageUploadComponent],
-  templateUrl: './singles.component.html',
-  styleUrl: './singles.component.css'
+  templateUrl: './breaks.component.html',
+  styleUrl: './breaks.component.css'
 })
-export class DashboardSinglesComponent {
-  singles: Card[] = [];
+export class DashboardBreaksComponent {
+  breaks: Break[] = [];
   selectedFile: File | null = null;
 
-  card: any = {
+  breakObj: any = {
     _id: '',
-    firstname: '',
-    lastname: '',
+    brand: '',
     sport: '',
     description: '',
     price: null
   }
 
   constructor(
-    private singlesService: SinglesService,
+    private breaksService: BreaksService,
     private http: HttpClient
   ) {}
 
   ngOnInit(): void{
-    this.singlesService.getCards().subscribe((data: any) => {
-      this.singles = data as Card[];
+    this.breaksService.getBreaks().subscribe((data: any) => {
+      this.breaks = data as Break[];
     });
 }
 
 //updated data
-loadCards(){
-  this.singlesService.getCards().subscribe((data: any) => {
-  this.singles = data;
+loadBreaks(){
+  this.breaksService.getBreaks().subscribe((data: any) => {
+  this.breaks = data;
   });
 }
 
-// Get Card
-  getCard(id: string) {
+// Get Break
+  getBreak(id: string) {
     if (id) {
-      this.singlesService.getCard(id).subscribe({
-        next: (cardData) => {
-          this.card = cardData; // Assign the fetched data
-          console.log('Fetched card data:', this.card); // Log the data
+      this.breaksService.getBreak(id).subscribe({
+        next: (breakData) => {
+          this.breakObj = breakData; // Assign the fetched data
+          console.log('Fetched Break data:', this.breakObj); // Log the data
         },
         error: (error) => {
-          console.error('Error fetching employee:', error);
+          console.error('Error fetching break:', error);
         }
       });
     } else {
-      console.log('Card ID is not defined.');
+      console.log('Break ID is not defined.');
     }
   }
   
 
 
    //update card
-  updateCard() {
-    if(this.card._id && this.card){
-      this.singlesService.updateCard(this.card).subscribe({
-        next: (updateCard) => {
-          console.log("Card successfully updated.", updateCard);
-          this.loadCards();
+  updateBreak() {
+    if(this.breakObj._id && this.breakObj){
+      this.breaksService.updateBreak(this.breakObj).subscribe({
+        next: (updateBreak) => {
+          console.log("Card successfully updated.", updateBreak);
+          this.loadBreaks();
     },
     error: (error)=>{
-      console.error('error updating card: ', error)
+      console.error('error updating break: ', error)
     }
   });
   } else {
-      console.log("Card id is not defined.");
+      console.log("Break id is not defined.");
     }
   }
 
-  //delete card
-  deleteCard(id: string){
-    this.singlesService.deleteCard(id).subscribe((response)=>{
-      console.log('Employee deleted: ', response)
-      this.loadCards();
+  //delete break
+  deleteBreak(id: string){
+    this.breaksService.deleteBreak(id).subscribe((response)=>{
+      console.log('Break deleted: ', response)
+      this.loadBreaks();
     })
   }
 
   //Adds a new card
-  addCard() {
+  addBreak() {
       // Validate the form fields
-      if (!this.card.firstname || !this.card.lastname || !this.card.sport || !this.card.description || !this.card.price) {
-        alert('All fields are required to add an card.');
+      if (!this.breakObj.brand || !this.breakObj.sport || !this.breakObj.description || !this.breakObj.price) {
+        alert('All fields are required to add an break.');
         return;
       }
     
  // Convert price to a number
-  this.card.price = Number(this.card.price);
+  this.breakObj.price = Number(this.breakObj.price);
 
  // Call the service to add the card
-  this.singlesService.addCard(this.card).subscribe({
+  this.breaksService.addBreak(this.breakObj).subscribe({
     next: (newCard) => {
       console.log('Card added successfully:', newCard);
-     this.loadCards(); // Refresh the Card list
-     this.resetCardForm(); // Clear the form after adding
+     this.loadBreaks(); // Refresh the Card list
+     this.resetBreakForm(); // Clear the form after adding
     },
     error: (error) => {
       console.error('Error adding card:', error);
@@ -116,11 +114,10 @@ loadCards(){
 }
   
   // Reset form fields after adding a card
-  resetCardForm() {
-    this.card = {
+  resetBreakForm() {
+    this.breakObj = {
       _id: '',
-      firstname: '',
-      lastname: '',
+      brand: '',
       sport: '',
       description: '',
       price: null

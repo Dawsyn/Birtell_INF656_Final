@@ -40,11 +40,11 @@ export class CartService {
 
   export interface Product {
     id: number;
-    name: string;
+    name?: string;
     brand?: string;
     player?: string;
     sport: string;
     description: string;
     price: number; 
-    img: string;
+    img?: string;
   }

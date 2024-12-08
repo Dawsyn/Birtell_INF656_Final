@@ -16,16 +16,16 @@
     </div>
 
 <div class="row">
-    <div class="col-sm-4" *ngFor="let card of filteredCards">
+    <div class="col-sm-4" *ngFor="let breakObj of filteredBreaksWithImages">
     <div class="card">
         <div class="card-img">
-        <img src="../../../assets/images/boxes/{{ card.img }}" alt="{{ card.name }}">
+        <img src="../../../assets/images/boxes/{{ breakObj.img }}" alt="{{ breakObj.brand }}">
         </div>
         <div class="card-desc">
-        <p><strong>Brand:</strong> {{ card.brand }}</p>
-        <p> {{ card.description }}</p>
-        <p><strong>Price:</strong> {{ card.price }}</p>
-        <button class="btn btn-primary" (click)="addToCart(card)">Add to cart</button>
+        <p><strong>Brand:</strong> {{ breakObj.brand }}</p>
+        <p> {{ breakObj.description }}</p>
+        <p><strong>Price:</strong> ${{ breakObj.price }}</p>
+        <button class="btn btn-primary" (click)="addToCart(breakObj)">Add to cart</button>
         </div>
     </div>
     </div>

@@ -17,15 +17,15 @@
     </div>
 
 <div class="row">
-    <div class="col-sm-4" *ngFor="let card of filteredCards">
+    <div class="col-sm-4" *ngFor="let card of filteredCardsWithImages">
       <div class="card">
         <div class="card-img">
-          <img src="../../../assets/images/cards/{{ card.img }}" alt="{{ card.name }}">
+          <img src="../../../assets/images/cards/{{ card.img }}" alt="{{ card.description}}">
         </div>
         <div class="card-desc">
-          <p><strong>Player:</strong> {{ card.player }}</p>
+          <p><strong>Player:</strong> {{ card.brand }}</p>
           <p> {{ card.description }}</p>
-          <p><strong>Price:</strong> {{ card.price }}</p>
+          <p><strong>Price:</strong> ${{ card.price }}</p>
           <button class="btn btn-primary" (click)="addToCart(card)">Add to cart</button>
         </div>
       </div>
